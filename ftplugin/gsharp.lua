@@ -16,3 +16,6 @@ opt.matchpairs:append("(:)")
 vim.keymap.set("n", "<C-F5>", function()
   require("gsharp").run()
 end, { buffer = true, desc = "Run G# file" })
+
+-- Attach the G# language server (diagnostics). No-op if not configured.
+require("gsharp.lsp").start()
