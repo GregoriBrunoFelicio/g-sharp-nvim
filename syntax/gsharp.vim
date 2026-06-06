@@ -3,7 +3,7 @@ if exists("b:current_syntax")
 endif
 
 " Keywords
-syntax keyword gsharpKeyword   if then else for in do while main
+syntax keyword gsharpKeyword   if then else for in do while main as
 syntax keyword gsharpBoolean   true false
 syntax keyword gsharpBuiltin   println print head tail last len empty nth reverse concat str
 syntax keyword gsharpStorage   let
