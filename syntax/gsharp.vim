@@ -3,13 +3,12 @@ if exists("b:current_syntax")
 endif
 
 " Keywords
-syntax keyword gsharpKeyword   if then else for in do while main as
+syntax keyword gsharpKeyword   if then else for in do main as import
 syntax keyword gsharpBoolean   true false
 syntax keyword gsharpBuiltin   println print head tail last len empty nth reverse concat str
-syntax keyword gsharpStorage   let
 
-" Let binding: highlight the name after 'let'
-syntax match gsharpLetName "\(\blet\s\+\)\@<=[a-zA-Z_][a-zA-Z0-9_]*"
+" Binding declaration: highlight the name before '->'
+syntax match gsharpBindingName "^\s*\zs[a-zA-Z_][a-zA-Z0-9_]*\ze\s*->"
 
 " Function definitions (inline): name params =>
 syntax match gsharpFunction "^\s*\zs[a-zA-Z_][a-zA-Z0-9_]*\ze\s\+\([a-zA-Z_][a-zA-Z0-9_]*\s*\)*=>"
@@ -17,11 +16,12 @@ syntax match gsharpFunction "^\s*\zs[a-zA-Z_][a-zA-Z0-9_]*\ze\s\+\([a-zA-Z_][a-z
 " Function definitions (block): name params at end of line (no =>)
 syntax match gsharpFunction "^\s*\zs[a-zA-Z_][a-zA-Z0-9_]*\ze\(\s\+[a-zA-Z_][a-zA-Z0-9_]*\)\+\s*$"
 
-" Arrow operator
+" Arrows
 syntax match gsharpArrow "=>"
+syntax match gsharpArrow "->"
 
 " Operators
-syntax match gsharpOperator "==\|!=\|<=\|>=\|&&\|||\|[+\-*/=<>!%]"
+syntax match gsharpOperator "==\|!=\|<=\|>=\|[+\-*/<>!%]"
 
 " Numbers
 syntax match gsharpNumber "\b\d\+\(\.\d\+\)\?[fdmFDM]\?\b"
@@ -34,17 +34,16 @@ syntax match  gsharpEscape "\\." contained
 syntax match gsharpComment "//.*$"
 
 " Highlight links
-highlight default link gsharpKeyword   Keyword
-highlight default link gsharpBoolean   Boolean
-highlight default link gsharpBuiltin   Function
-highlight default link gsharpStorage   StorageClass
-highlight default link gsharpLetName   Identifier
-highlight default link gsharpFunction  Function
-highlight default link gsharpArrow     Operator
-highlight default link gsharpOperator  Operator
-highlight default link gsharpNumber    Number
-highlight default link gsharpString    String
-highlight default link gsharpEscape    SpecialChar
-highlight default link gsharpComment   Comment
+highlight default link gsharpKeyword      Keyword
+highlight default link gsharpBoolean      Boolean
+highlight default link gsharpBuiltin      Function
+highlight default link gsharpBindingName  Identifier
+highlight default link gsharpFunction     Function
+highlight default link gsharpArrow        Operator
+highlight default link gsharpOperator     Operator
+highlight default link gsharpNumber       Number
+highlight default link gsharpString       String
+highlight default link gsharpEscape       SpecialChar
+highlight default link gsharpComment      Comment
 
 let b:current_syntax = "gsharp"
